@@ -13,8 +13,8 @@ class CaptchaService extends Service
         $route->get('captcha/[:config]', "\\think\\captcha\\CaptchaController@index");
 
         Validate::maker(function ($validate) {
-            $validate->extend('captcha', function ($value) {
-                return captcha_check($value);
+            $validate->extend('captcha', function ($value, $config = null) {
+                return captcha_check($value, $config);
             }, ':attribute错误!');
         });
     }

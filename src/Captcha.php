@@ -34,7 +34,7 @@ class Captcha
     // 验证码字符集合
     protected $codeSet = '2345678abcdefhijkmnpqrstuvwxyzABCDEFGHJKLMNPQRTUVWXY';
     // 验证码过期时间（s）
-    protected $expire = 1800;
+    protected $expire = 300;
     // 使用中文验证码
     protected $useZh = false;
     // 中文验证码字符串
@@ -42,7 +42,7 @@ class Captcha
     // 使用背景图片
     protected $useImgBg = false;
     // 验证码字体大小(px)
-    protected $fontSize = 25;
+    protected $fontSize = 18;
     // 是否画混淆曲线
     protected $useCurve = true;
     // 是否添加杂点
@@ -52,7 +52,7 @@ class Captcha
     // 验证码图片宽度
     protected $imageW = 0;
     // 验证码位数
-    protected $length = 5;
+    protected $length = 4;
     // 验证码字体，不设置随机获取
     protected $fontttf = '';
     // 背景颜色
@@ -141,10 +141,12 @@ class Captcha
      * 验证验证码是否正确
      * @access public
      * @param string $code 用户验证码
+     * @param string|null $config 配置key
      * @return bool 用户验证码是否正确
      */
-    public function check(string $code): bool
+    public function check(string $code, $config = null): bool
     {
+        $this->configure($config);
         if (!$this->session->has($this->sessionKey)) {
             return false;
         }

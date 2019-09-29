@@ -44,9 +44,10 @@ function captcha_img($id = ''): string
 
 /**
  * @param string $value
+ * @param string|null $config
  * @return bool
  */
-function captcha_check($value)
+function captcha_check($value, $config = null)
 {
-    return Captcha::check($value);
+    return Captcha::check($value, $config);
 }
